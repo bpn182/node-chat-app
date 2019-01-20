@@ -3,7 +3,10 @@ const http = require('http');
 const path = require('path');
 var app = express();
 const socketIO = require('socket.io');
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5000;
+const moment = require('moment');
+var date = moment();
+console.log(date.format('h:mm a'));     //show current time 10:00 pm
 
 const {generateMessage ,generateLocationMessage} = require('./utils/message');
 const publicPath = path.join(__dirname,'./public');
