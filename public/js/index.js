@@ -1,5 +1,24 @@
 	var socket = io();
 
+	// For AutoScrolling when message reaches buttom of screen
+
+	function scrollToBottom(){
+		//selectors
+		var message = $('#messages');
+		var newMessage = message.children('li:last-child')
+		//heights
+
+		var clientHeight = message.prop('clientHeight');
+		var scrollToTop = message.prop('scrollTop');
+		var scrollHeight = message.prop('scrollHeight');
+		var newMessageHeight = newMessage.innerHeight();
+		var lastMessageHeight = newMessage.prev().innerHeight();
+
+		if(clientHeight + scrollToTop + newMessageHeight + lastMessageHeight >= scrollHeight){
+			message.scrollTop(scrollHeight);
+		}
+	}
+
 	socket.on('connect',function(){
 		console.log("connected to server");
 
@@ -21,6 +40,7 @@
 
 		
 		$('#messages').append(html);
+		scrollToBottom();
 
 /*		var li = $('<li></li>')
 		li.text(`${message.from}:${time} ${message.text}`)
@@ -38,6 +58,7 @@
 		});
 
 		$('#messages').append(html);
+		scrollToBottom()
 
 /*		var li = $('<li></li>');
 		var a =$('<a target="_blank">My location <img width=3% src="../images/map.png" /></a>');
