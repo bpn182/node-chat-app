@@ -3,7 +3,7 @@
 
 <head>
     <title></title>
-    <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css">
+    
     <link rel="stylesheet" type="text/css" href="./css/index.css">
     <script src='/js/jquery-3.3.1.min.js'></script>
 </head>
@@ -29,9 +29,35 @@
 
     </div>
 
+	<script id="message-template" type="text/template">  
+		<li class="message">
+			<div class="message__title">
+				<h4>{{from}}</h4>
+				<span>{{createdAt}}</span>
+			</div>
+			<div class="message__body">
+				<p>{{text}}</p>
+			</div>
+
+		</li>
+	</script>
+
+		<script id="location-template" type="text/template">  
+		<li class="message">
+			<div class="message__title">
+				<h4>{{from}}</h4>
+				<span>{{createdAt}}</span>
+			</div>
+			<div class="message__body">
+				<a href="{{location}}" target="_blank">My location <img width=3% src="./images/map.png" /></a>
+			</div>
+
+		</li>
+	</script>
     <script src="/socket.io/socket.io.js"></script>
     <script src='/js/index.js'></script>
     <script src='/js/moment.js'></script>
+    <script src='/js/mustache.js'></script>
 </body>
 
 </html>

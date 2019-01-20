@@ -10,27 +10,42 @@
 	});
 
 	socket.on('message',function(message){
-		console.log('New message',message);
+		console.log(message);
 		var time = moment(message.createdAt).format('h:mm a');
-		console.log(time);
+		var template = $('#message-template').html();
+		var html = Mustache.render(template,{
+			text:message.text,
+			from:message.from,
+			createdAt:time
+		});
 
-		var li = $('<li></li>')
+		
+		$('#messages').append(html);
+
+/*		var li = $('<li></li>')
 		li.text(`${message.from}:${time} ${message.text}`)
-		$('#messages').append(li);
+		$('#messages').append(li);*/
 	});
 
 		socket.on('locationmessage',function(message){
 		console.log('New message',message);
 		var time = moment(message.createdAt).format('h:mm a');
+		var template = $('#location-template').html();
+		var html = Mustache.render(template,{
+			from:message.from,
+			createdAt:time,
+			location:message.location
+		});
 
-		var li = $('<li></li>');
+		$('#messages').append(html);
+
+/*		var li = $('<li></li>');
 		var a =$('<a target="_blank">My location <img width=3% src="../images/map.png" /></a>');
 		a.attr('href',message.location);
 		console.log(message.location)
 		li.text(`${message.from}:${time} `);
 		li.append(a);
-		
-		$('#messages').append(li);
+		$('#messages').append(li);*/
 	});
 
 /*	socket.emit('createMessage',{
