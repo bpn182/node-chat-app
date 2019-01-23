@@ -28,7 +28,7 @@ io.on('connection',(socket)=>{
 		socket.join(params.room);
 		socket.emit('message',generateMessage('Admin',`welcome to app ${params.name}`));
 
-		socket.broadcast.to(params.join).emit('message',generateMessage('Admin',`${params.name} has Joined`));
+		socket.broadcast.to(params.room).emit('message',generateMessage('Admin',`${params.name} has Joined`));
 
 		socket.on('createMessage',(message,callback)=>{
 		io.emit('message',generateMessage(params.name,message.text));
