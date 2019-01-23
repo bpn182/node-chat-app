@@ -4,7 +4,7 @@ var {generateMessage} = require('./message');
 
 describe('generateMessage',()=>{
 	it('should generate message from object',()=>{
-		var from = 'Bipin';
+		var from = `${params.name};
 		var text = 'some text';
 		var message = generateMessage(from,text);
 
